@@ -1,4 +1,8 @@
+
+
+
 # plenty_of_paws
+
 # C2.17_hackathon
 
 Hackathon project involving the combination of different data sources into an application or game
@@ -17,6 +21,8 @@ Hackathon project involving the combination of different data sources into an ap
 - **Innovative / Transformative** : Did the project do something new and exciting?  Was it bold and tried to do things that haven't been done much.  Did it combine the data sources together in a way that was more useful than either source by itself
 - **Ease of Use / Understanding** : Was it easy to use the application / game, or if it was more complex, was the application or game able to provide you with tutorials or instructions that made understanding it a breeze.
 
+
+
 ### Teams
 - Team 1
   - Mentor: Dan
@@ -31,14 +37,3 @@ Hackathon project involving the combination of different data sources into an ap
   - Joseph
   - Kevin C
   - Andres
-
-- Team 3
-  - Mentor: Gwen
-  - Joshua
-  - Kevin
-  - Jinwoo
-  - Ryan
-
-### Deadline: 
-- 6:00PM Thursday, March 23, 2017
-
