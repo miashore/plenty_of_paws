@@ -7,7 +7,6 @@ $(document).ready(function() {
  * @params none
  */
 function setup(){
-    var petObject = null;
     randomBackground();
     attachClickHandlers();
 }
@@ -188,53 +187,6 @@ function displayPet(petObject) {
     $('#pet-info').append(previousShelterButton, nextShelterButton);
 }
 
-var petDetails = ["name","age","description"]; // media.photos.photo[i] for images of dog
-
-/**
- * @name - displayRandomPet - function for displaying a random pet from somewhere in the petfinder database
- * @params - petObject
- * @return none
- */
-function displayRandomPet(petObject) {
-    var petProfile = $("<div>");
-    var petPicture = $("<img>");
-    var petPictureHolder = $("<div>");
-    petPicture.attr("src",petObject["media"]["photos"]["photo"][0]["$t"]).addClass("animalPicture");
-    petPictureHolder.append(petPicture);
-    petProfile.append(petPictureHolder);
-    for (var i = 0; i < petDetails.length; i++) {
-        petProfile.append(petObject[petDetails[i]]["$t"]);
-    }
-    $(".mainContent").append(petProfile);
-}
-/**
- * @name - getRandomPet - Based on user click get a random dog or cat
- * @note - May need to transition this to shelter.getPet and randomize the results or something like that
- */
-function getRandomPet() {
-    var dataObject = {
-        format: "json",
-        key: "1db51d3f16936ba505cf7a0476dd8771",
-        animal: $(this).text(),
-        output: "basic"
-    };
-    var urlString = "https://api.petfinder.com/pet.getRandom?format=json" + "&" + dataObject["animal"] + "&" + dataObject["output"] + "&" + "callback=?";
-    $.ajax({
-        data: dataObject,
-        dataType: "JSON",
-        method: "GET",
-        url: urlString, //"http://api.petfinder.com/pet.getRandom", // petFinder.php",
-        success: function (response) {
-            console.log("Random pet", response["petfinder"]["pet"]);
-            petObject = response["petfinder"]["pet"];
-            displayRandomPet(petObject);
-        },
-        error: function (response) {
-            console.log(response);
-        }
-    });
-}
-
 var shelterArray = [];
 var petArray = [];
 var shelterCount = 0;
@@ -274,7 +226,6 @@ const shelterFinder = function () {
 };
 
 function getRandomShelterBasedOnAreaCode() {
-    var randomShelterID = shelterArray[shelterCount];
     return shelterArray[shelterCount]["id"]["$t"];
 }
 
@@ -298,18 +249,6 @@ const shelterPets = function (id = getRandomShelterBasedOnAreaCode(shelterArray)
             displayPet(petArray);
         }
     });
-};
-
-const resetEverything = function () {
-    petArray = [];
-    shelterArray = [];
-    userSelectedAnimal = null;
-    shelterCount = 0;
-    $('.noMoreShelters').remove();
-    $('.userLocation').val(''); // Empty the zip code when you reset everything
-    let newSearch = $("<a href='index.html' class='btn'>").text("New Search?");
-    $(".animal-cards").append(newSearch);
-    newSearch.on('click', toggleVisibility('newSearchRequested')); // hide the map, walmart, and animal cards
 };
 
 const nextShelter = function () {
